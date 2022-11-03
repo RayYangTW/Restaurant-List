@@ -1,4 +1,5 @@
 # Restaurant-List
+![image](./public/images/screenshot.png)
 
 ## 介紹
 
