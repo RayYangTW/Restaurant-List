@@ -44,6 +44,6 @@
 
 - Node.js 10.15.0
 - Express 4.16.4
-- Express-Handlebars 0.0.0
+- Express-Handlebars 3.0.0
 - Bootstrap 5.1.3
 - Font-awesome
