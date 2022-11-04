@@ -24,18 +24,22 @@ app.get('/', (req, res) => {
 //動態路由
 app.get('/restaurants/:restaurant_id', (req, res) => {
   const restaurant = restaurantList.results.find(restaurant => restaurant.id.toString() === req.params.restaurant_id)
-  res.render('show', { restaurant: restaurant})
+  res.render('show', { restaurant })
 })
 
 //setting routes search
 app.get('/search', (req, res) => {
   const keyword = req.query.keyword.trim()
-  const restaurants = restaurantList.results.filter(
+  const filteredRestaurants = restaurantList.results.filter(
     restaurant => 
       restaurant.name.toLocaleLowerCase().includes(keyword.toLocaleLowerCase()) ||
       restaurant.category.toLocaleLowerCase().includes(keyword.toLocaleLowerCase())
   )
-  res.render('index', { restaurants, keyword })
+  if(!filteredRestaurants.length) {
+    res.render('no-result', { keyword })
+  } else {
+    res.render('index', { restaurants: filteredRestaurants, keyword })
+  }
 })
 
 //start and listen on Express server
