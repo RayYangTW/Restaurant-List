@@ -24,7 +24,7 @@ db.once('open', () => {
 
 
 // require json files
-const restaurantList = require('./restaurant.json')
+const restaurantList = require('./restaurant.json').results
 
 //setting template engine
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
