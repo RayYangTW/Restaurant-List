@@ -1,9 +1,27 @@
 //require package
 const express = require('express')
 const exphbs = require('express-handlebars')
+const mongoose = require('mongoose') // require mongoose
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config()
+}
 
 const app = express()
 const port = 3000
+
+mongoose.connect(process.env.MONGODB_URI, {useNewUrlParser: true, useUnifiedTopology: true }) // 設定連線到 mongoDB
+
+// 取得資料庫連線狀態
+const db = mongoose.connection
+
+db.on('error', () => {
+  console.log('mongodb error!')
+})
+
+db.once('open', () => {
+  console.log('mongodb connected!')
+})
+
 
 // require json files
 const restaurantList = require('./restaurant.json')
