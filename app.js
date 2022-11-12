@@ -44,15 +44,28 @@ app.get('/', (req, res) => {
     .catch(error => console.log(error))
 })
 
+//setting routes new // ??? 為何/new要放在前面，不然會出錯誤 ???
+app.get('/restaurants/new', (req, res) => {
+  return res.render('new')
+})
+
+//setting routes post
+app.post('/restaurants', (req, res) => {
+  Restaurant.create( req.body )   // req.body 不需要加 {}
+    .then(() => res.redirect('/'))
+    .catch(error => console.log(error))
+})
+
 //setting routes show
 //動態路由
-app.get('/restaurants/:id', (req, res) => {
-  const restaurant_id = req.params.id
+app.get('/restaurants/:restaurant_id', (req, res) => {
+  const restaurant_id = req.params.restaurant_id
   Restaurant.findById(restaurant_id)
     .lean()
     .then(restaurant => res.render('show', { restaurant }))
     .catch(error => console.log(error))
 })
+
 
 //setting routes search
 app.get('/search', (req, res) => {
