@@ -70,16 +70,22 @@ app.get('/restaurants/:restaurant_id', (req, res) => {
 //setting routes search
 app.get('/search', (req, res) => {
   const keyword = req.query.keyword.trim()
-  const filteredRestaurants = restaurantList.results.filter(
-    restaurant => 
-      restaurant.name.toLocaleLowerCase().includes(keyword.toLocaleLowerCase()) ||
-      restaurant.category.toLocaleLowerCase().includes(keyword.toLocaleLowerCase())
-  )
-  if(!filteredRestaurants.length) {
-    res.render('no-result', { keyword })
-  } else {
-    res.render('index', { restaurants: filteredRestaurants, keyword })
-  }
+  const lowerKeyword = keyword.toLocaleLowerCase()
+  Restaurant.find()
+    .lean()
+    .then((restaurant) => {
+      const filteredRestaurants = restaurant.filter(
+        restaurant =>
+          restaurant.name.toLocaleLowerCase().includes(lowerKeyword) ||
+          restaurant.category.toLocaleLowerCase().includes(lowerKeyword)
+      )
+      if(!filteredRestaurants.length) {
+        res.render('no-result', { keyword })
+      } else {
+        res.render('index', { restaurants: filteredRestaurants, keyword })
+      }
+    })
+    .catch(error => console.log(error))
 })
 
 //start and listen on Express server
