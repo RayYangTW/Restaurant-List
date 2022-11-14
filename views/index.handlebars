@@ -30,11 +30,12 @@
     <div class="col-md-10 col-12 mx-auto">
       <div class="row row-cols-sm-3">
         {{#each restaurants}}
-        {{!-- 不能包在link裡面，否則畫面會跑掉 --}}
-        {{!-- <a href="/restaurants/{{this._id}}" class="text-secondary"> --}}
           <div class="card mb-3">
+            {{!-- link 包住 img 可以做出點擊照片跳轉的功能 --}}
+            <a href="/restaurants/{{this._id}}" class="text-secondary">
             <img class="card-img-top" src="{{this.image}}"
               alt="{{this.name}}">
+              </a>
             <div class="card-body p-3">
               <h6 class="card-title mb-1">{{this.name}}</h6>
 
@@ -55,12 +56,13 @@
               <a href="/restaurants/{{this._id}}" class="text-decoration-none">
                 Detail
               </a>
-              <a href="/restaurants/{{this._id}}/edit" class="text-decoration-none">
-                <button type="button" class="btn btn-danger">Delete</button>
-              </a>
+              <form action="/restaurants/{{this._id}}/delete" method="POST" style="display: inline;">
+              {{!-- onclick 放入 function 可以執行該 function --}}
+                <button type="submit" class="btn btn-danger" onclick="confirmDelte()">Delete</button>
+              </form>
             </div>
           </div>
-        {{!-- </a> --}}
+        
         {{/each}}
         
       </div>

@@ -83,6 +83,15 @@ app.post('/restaurants/:restaurant_id/edit', (req, res) => {
     .catch(error => console.log(error))
 })
 
+//setting routes post delete
+app.post('/restaurants/:restaurant_id/delete', (req, res) => {
+  const restaurant_id = req.params.restaurant_id
+  Restaurant.findById(restaurant_id)
+    .then(restaurant => restaurant.remove())
+    .then(() => res.redirect('/'))
+    .catch(error => console.log(error))
+})
+
 
 //setting routes search
 app.get('/search', (req, res) => {
