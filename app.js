@@ -66,6 +66,23 @@ app.get('/restaurants/:restaurant_id', (req, res) => {
     .catch(error => console.log(error))
 })
 
+//setting routes get edit
+app.get('/restaurants/:restaurant_id/edit', (req, res) => {
+  const restaurant_id = req.params.restaurant_id
+  Restaurant.findById(restaurant_id)
+    .lean()
+    .then(restaurant => res.render('edit', { restaurant }))
+    .catch(error => console.log(error))
+})
+
+//setting routes post edit
+app.post('/restaurants/:restaurant_id/edit', (req, res) => {
+  const restaurant_id = req.params.restaurant_id
+  Restaurant.findByIdAndUpdate(restaurant_id, req.body)
+    .then(restaurant => res.redirect(`/restaurants/${restaurant_id}`))
+    .catch(error => console.log(error))
+})
+
 
 //setting routes search
 app.get('/search', (req, res) => {
