@@ -44,7 +44,7 @@ app.get('/', (req, res) => {
     .catch(error => console.log(error))
 })
 
-//setting routes new // ??? 為何/new要放在前面，不然會出錯誤 ???
+//setting routes new
 app.get('/restaurants/new', (req, res) => {
   return res.render('new')
 })
