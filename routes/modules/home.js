@@ -5,7 +5,8 @@ const Restaurant = require('../../models/restaurant')
 
 //setting routes index
 router.get('/', (req, res) => {
-  const sortBy = req.query.sort
+  const sortValue = req.query.sort  // sortValue => String: A-Z or Z-A ...
+  const sort = sortValue ? { [sortValue]: true } : { "a-z": true } // sort => Object: {a: true }
   const sortOption = {
     'A-Z': { name: 'asc' },
     'Z-A': { name: 'desc' },
@@ -15,8 +16,8 @@ router.get('/', (req, res) => {
   }
   Restaurant.find()
     .lean()
-    .sort(sortOption[sortBy])
-    .then(restaurants => res.render('index', { restaurants }))
+    .sort(sortOption[sortValue])
+    .then(restaurants => res.render('index', { restaurants, sort }))
     .catch(error => console.log(error))
 })
 

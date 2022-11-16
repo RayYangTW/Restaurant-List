@@ -26,5 +26,5 @@ app.set('view engine', 'handlebars')
 
 //start and listen on Express server
 app.listen(port, () => {
-  console.log(`Restaurant List is listening on localhost:${port}`)
+  console.log(`Restaurant List is listening on http://localhost:${port}`)
 })
