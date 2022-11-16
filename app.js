@@ -30,6 +30,8 @@ app.use(express.static('public'))
 //用 app.use 規定每一筆請求都會透過 body-parser 進行前置處理
 app.use(bodyParser.urlencoded({ extended: true }))
 
+app.use(methodOverride('_method'))
+
 //setting template engine
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
 app.set('view engine', 'handlebars')
@@ -83,7 +85,7 @@ app.get('/restaurants/:restaurant_id/edit', (req, res) => {
 })
 
 //setting routes post edit
-app.post('/restaurants/:restaurant_id/edit', (req, res) => {
+app.put('/restaurants/:restaurant_id', (req, res) => {
   const restaurant_id = req.params.restaurant_id
   Restaurant.findByIdAndUpdate(restaurant_id, req.body)
     .then(restaurant => res.redirect(`/restaurants/${restaurant_id}`))
@@ -91,7 +93,7 @@ app.post('/restaurants/:restaurant_id/edit', (req, res) => {
 })
 
 //setting routes post delete
-app.post('/restaurants/:restaurant_id/delete', (req, res) => {
+app.delete('/restaurants/:restaurant_id', (req, res) => {
   const restaurant_id = req.params.restaurant_id
   Restaurant.findById(restaurant_id)
     .then(restaurant => restaurant.remove())

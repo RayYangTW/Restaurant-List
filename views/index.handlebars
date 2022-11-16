@@ -69,7 +69,7 @@
               <a href="/restaurants/{{this._id}}" class="text-decoration-none">
                 Detail
               </a>
-              <form action="/restaurants/{{this._id}}/delete" method="POST" style="display: inline;">
+              <form action="/restaurants/{{this._id}}?_method=DELETE" method="POST" style="display: inline;">
               {{!-- onclick 放入 function 可以執行該 function --}}
                 <button type="submit" class="btn btn-danger" onclick="confirmDelete()">Delete</button>
               </form>
