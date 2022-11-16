@@ -10,16 +10,19 @@
           <div class="input-group-append">
             <button class="btn btn-major" type="submit" id="search-button"><i class="fas fa-search"></i></button>
           </div>
+          <div class="dropdown">
+            <button class="btn btn-warning dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+              排序方式
+            </button>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">名稱 A-Z</a></li>
+              <li><a class="dropdown-item" href="#">名稱 Z-A</a></li>
+              <li><a class="dropdown-item" href="#">類別</a></li>
+              <li><a class="dropdown-item" href="#">地區</a></li>
+            </ul>
+          </div>
         </div>
       </form>
-      <div class="d-flex justify-content-around align-items-center">
-        <a href="./restaurants/new">
-          <button class="btn btn-success mt-2">
-            新增餐廳
-            <i class="fa-solid fa-pen"></i>
-          </button>
-        </a>
-      </div>
     </div>
   </div>
 </div>
