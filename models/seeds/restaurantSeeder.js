@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 const Restaurant = require('../restaurant')
-const restaurantRawData = require('../../restaurant.json').results // require Raw Data
+const restaurantRawData = require('../restaurant.json').results // require Raw Data
 
 require('dotenv').config()
 

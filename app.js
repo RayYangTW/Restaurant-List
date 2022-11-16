@@ -7,6 +7,7 @@ if (process.env.NODE_ENV !== 'production') {
 }
 const Restaurant = require('./models/restaurant')
 const bodyParser = require('body-parser')
+const methodOverride = require('method-override')
 
 const app = express()
 const port = 3000
@@ -29,17 +30,23 @@ app.use(express.static('public'))
 //用 app.use 規定每一筆請求都會透過 body-parser 進行前置處理
 app.use(bodyParser.urlencoded({ extended: true }))
 
-// require json files
-const restaurantList = require('./restaurant.json').results
-
 //setting template engine
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
 app.set('view engine', 'handlebars')
 
 //setting routes index
 app.get('/', (req, res) => {
+  const sortBy = req.query.sort
+  const sortOption = {
+    'A-Z': { name: 'asc' },
+    'Z-A': { name: 'desc' },
+    'category': { category: 'asc' },
+    'location': { location: 'asc' },
+    'rating':{ rating: 'desc' }
+  }
   Restaurant.find()
     .lean()
+    .sort(sortOption[sortBy])
     .then(restaurants => res.render('index', { restaurants }))
     .catch(error => console.log(error))
 })
