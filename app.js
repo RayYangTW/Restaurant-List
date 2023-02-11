@@ -10,6 +10,7 @@ if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config()
 }
 
+const usePassport = require('./config/passport')
 const Restaurant = require('./models/restaurant')
 const routes = require('./routes')
 
@@ -26,6 +27,7 @@ app.use(session({
 app.use(express.static('public'))//setting static files
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(methodOverride('_method'))
+usePassport(app)
 app.use(routes)
 
 //setting template engine
