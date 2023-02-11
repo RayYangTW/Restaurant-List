@@ -21,7 +21,7 @@ app.use(methodOverride('_method'))
 app.use(routes)
 
 //setting template engine
-app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
+app.engine('handlebars', exphbs({ defaultLayout: 'main', extname: 'hbs'}))
 app.set('view engine', 'handlebars')
 
 //start and listen on Express server
