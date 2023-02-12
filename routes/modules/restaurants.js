@@ -10,42 +10,47 @@ router.get('/new', (req, res) => {
 
 //setting routes post
 router.post('/', (req, res) => {
-  Restaurant.create( req.body )   // req.body 不需要加 {}
+  const userId = req.user._id
+  Restaurant.create({ userId, ...req.body })   // spread operator
     .then(() => res.redirect('/'))
     .catch(error => console.log(error))
 })
 
 //setting routes show
 //動態路由
-router.get('/:restaurant_id', (req, res) => {
-  const restaurant_id = req.params.restaurant_id
-  Restaurant.findById(restaurant_id)
+router.get('/:id', (req, res) => {
+  const userId = req.user._id
+  const _id = req.params.id
+  return Restaurant.findOne({ _id, userId })
     .lean()
     .then(restaurant => res.render('show', { restaurant }))
     .catch(error => console.log(error))
 })
 
 //setting routes get edit
-router.get('/:restaurant_id/edit', (req, res) => {
-  const restaurant_id = req.params.restaurant_id
-  Restaurant.findById(restaurant_id)
+router.get('/:id/edit', (req, res) => {
+  const _id = req.params.id
+  const userId = req.user._id
+  Restaurant.findOne({ _id, userId })
     .lean()
     .then(restaurant => res.render('edit', { restaurant }))
     .catch(error => console.log(error))
 })
 
 //setting routes post edit
-router.put('/:restaurant_id', (req, res) => {
-  const restaurant_id = req.params.restaurant_id
-  Restaurant.findByIdAndUpdate(restaurant_id, req.body)
-    .then(restaurant => res.redirect(`/restaurants/${restaurant_id}`))
+router.put('/:id', (req, res) => {
+  const _id = req.params.id
+  const userId = req.user._id
+  Restaurant.findOneAndUpdate({ _id, userId }, { ...req.body, userId })
+    .then(() => res.redirect(`/restaurants/${_id}`))
     .catch(error => console.log(error))
 })
 
 //setting routes post delete
-router.delete('/:restaurant_id', (req, res) => {
-  const restaurant_id = req.params.restaurant_id
-  Restaurant.findById(restaurant_id)
+router.delete('/:id', (req, res) => {
+  const _id = req.params.id
+  const userId = req.user._id
+  Restaurant.findOne({ _id, userId })
     .then(restaurant => restaurant.remove())
     .then(() => res.redirect('/'))
     .catch(error => console.log(error))
