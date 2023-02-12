@@ -1,19 +1,21 @@
 # Restaurant-List
 
-![image](./public/images/screenshot3.png)
+![image](./public/images/screenshot5.png)
+![image](./public/images/screenshot4.png)
 
 ## 介紹
 
-一個餐廳清單，可以瀏覽、新增及刪除並查看餐廳詳細資訊。
+一個餐廳清單，使用者可以保存自己喜愛的餐廳資訊。
 
 ## 功能
 
-- 查看所有餐廳
-- 新增、刪除餐廳資料
-- 瀏覽餐廳的詳細資訊
-- 連結餐廳的地址到 Google 地圖
-- 以餐廳名字或分類搜尋特定餐廳
-- 可以排序餐廳的顯示方式
+- 會員功能：使用者可以註冊帳號及登入
+- 第三方登入：使用者可以以 Facebook 註冊及登入
+- CRUD：使用者可以新增、刪除、編輯、刪除餐廳資料
+- 使用者可以瀏覽餐廳的詳細資訊
+- 餐廳資訊連結餐廳的地址到 Google 地圖
+- 使用者可以以餐廳名字或分類搜尋特定餐廳
+- 使用者可以可以排序餐廳的顯示方式
 
 ## 開始使用
 
@@ -22,10 +24,7 @@
    ```bash
    git clone https://github.com/RayYangTW/Restaurant-List.git
    ```
-3. 設定 MongoDB，打開資料夾建立.env 檔案並設定以下字串
-   ```
-   MONGODB_URI=mongodb+srv://<你的 MongoDB 帳號>:<你的 MongoDB 密碼>@cluster0.xxxx.xxxx.net/<你的 MongoDB 資料庫名稱><?retryWrites=true&w=majority
-   ```
+3. 依照 .env.example 設定環境變數
 4. 建立種子資料
 
    ```bash
@@ -58,11 +57,18 @@
 
 ## 開發工具
 
-- Node.js 10.15.0
-- Express@4.16.4
-- Express-Handlebars@3.0.0
+- node.js 16.18.0
+- mongoDB
+- bcryptjs @2.4.3
+- connect-flash": "^0.1.1",
+- dotenv": "^16.0.3",
+- express": "^4.16.4",
+- express-handlebars": "^3.0.0",
+- express-session": "^1.17.3",
+- method-override": "^3.0.0",
+- mongoose": "^5.9.7",
+- passport": "^0.4.1",
+- passport-facebook": "^3.0.0",
+- passport-local": "^1.0.0"
 - Bootstrap 5.1.3
 - Font-awesome
-- MongoDB
-- Mongoose@5.9.7
-- Method-override@3.0.0
