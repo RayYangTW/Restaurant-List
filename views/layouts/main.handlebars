@@ -20,9 +20,7 @@
           我的餐廳清單
         </a>
         {{#if isAuthenticated}}
-        <form action="/users/logout" method="POST">
-          <button type="submit" class="btn btn-primary">登出</button>
-        </form>
+        <a class="btn btn-primary" href="/users/logout">登出</a>
         {{else}}
         <a class="btn btn-primary" href="/users/login">登入</a>
         {{/if}}
