@@ -19,15 +19,13 @@
             width="30" height="30" class="d-inline-block align-top" alt="我的餐廳清單">
           我的餐廳清單
         </a>
-        <a href="./restaurants/new">
-          <button class="btn btn-success mt-2">
-            新增餐廳
-            <i class="fa-solid fa-pen"></i>
-          </button>
-        </a>
+        {{#if isAuthenticated}}
         <form action="/users/logout" method="POST">
-          <button type="submit" class="btn btn-primary">Logout</button>
+          <button type="submit" class="btn btn-primary">登出</button>
         </form>
+        {{else}}
+        <a class="btn btn-primary" href="/users/login">登入</a>
+        {{/if}}
       </div>
     </nav>
   
