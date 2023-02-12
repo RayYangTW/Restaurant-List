@@ -49,7 +49,17 @@
    Restaurant List is listening on http://localhost:3000
    ```
 
-8. 若欲暫停使用
+8. 建立種子資料後可以種子帳號使用，或自行註冊
+
+   ```bash
+   email: 'user1@example.com',
+   password: '12345678'
+
+   email: 'user2@example.com',
+   password: '12345678'
+   ```
+
+9. 若欲暫停使用
 
    ```bash
    ctrl + c
